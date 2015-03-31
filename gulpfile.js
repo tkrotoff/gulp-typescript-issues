@@ -13,12 +13,12 @@ function sass(src, dest) {
 }
 
 gulp.task('styles', function() {
-  return sass('app/main.scss', '.tmp/app')
+  return sass('app/app.scss', '.tmp/app')
     .pipe($.debug({title: 'styles:'}));
 });
 
 gulp.task('styles:test', function() {
-  return sass('test/unit/main.scss', '.tmp/test/unit')
+  return sass('test/unit/test.scss', '.tmp/test/unit')
     .pipe($.debug({title: 'styles:test: '}));
 });
 
@@ -34,6 +34,7 @@ function tsc(src, dest, out) {
     }));
 
   var js = tsResult.js
+    .pipe($.debug({title: 'DEBUG:'}))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(dest));
 
@@ -44,11 +45,13 @@ function tsc(src, dest, out) {
 }
 
 gulp.task('scripts', function() {
-  return tsc('app/_all.ts', '.tmp/app', 'all.js')
+  return tsc('app/_all.ts', '.tmp/app', 'app.js')
     .pipe($.debug({title: 'scripts:'}));
 });
 
 gulp.task('scripts:test', function() {
-  return tsc('test/unit/_all.ts', '.tmp/test/unit', 'all.js')
+  return tsc('test/unit/_all.ts', '.tmp/test/unit', 'test.js')
     .pipe($.debug({title: 'scripts:test:'}));
 });
+
+gulp.task('default', ['styles', 'styles:test', 'scripts', 'scripts:test']);
