@@ -34,7 +34,6 @@ function tsc(src, dest, out) {
     }));
 
   var js = tsResult.js
-    .pipe($.debug({title: 'DEBUG:'}))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(dest));
 
