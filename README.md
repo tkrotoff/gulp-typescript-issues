@@ -1,3 +1,5 @@
+See issues https://github.com/ivogabe/gulp-typescript/issues/90 and https://github.com/ivogabe/gulp-typescript/issues/134
+
 Commands to execute:
 
 - ./node_modules/.bin/gulp => compiles everything
